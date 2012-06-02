@@ -41,13 +41,12 @@
        [:ul
         (map (fn [an-idea]
                (html [:li (str "On "
-                               (unparse (formatters :rfc822) (from-long (Long/parseLong (:timestamp an-idea))))
+                               (unparse (formatters :rfc822) (from-long (:timestamp an-idea)))
                                " you had this idea: "
                                (:idea an-idea))]))
              (ideas))]]]))
 
   (POST "/" {params :params}
-    (println params)
     (let [new-idea (params :new-idea)]
       (create-idea new-idea))
     {:status 302 

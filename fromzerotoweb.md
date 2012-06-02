@@ -78,9 +78,9 @@ The table will have two columns: idea and timestamp.
 
     create database ideas;  
 	use ideas;  
-	create table idea (idea TEXT, timestamp LONG);  
+	create table idea (idea TEXT, timestamp BIGINT);  
 	create user ideas@'localhost' IDENTIFIED BY 'ideas';  
-	grant all privileges on ideas.* to ideas@'localhost'; `
+	grant all privileges on ideas.* to ideas@'localhost';  
 
 ### Database dependencies
 **Korma** is a *Domain Specific Language* for Clojure to use relational databases. http://sqlkorma.com/
@@ -218,7 +218,7 @@ Define our first routes
 		   [:ul
 			(map (fn [an-idea]
 				   (html [:li (str "On "
-								   (unparse (formatters :rfc822) (from-long (Long/parseLong (:timestamp an-idea))))
+								   (unparse (formatters :rfc822) (from-long :timestamp an-idea)))
 								   " you had this idea: "
 								   (:idea an-idea))]))
 				 (ideas))]]]))
